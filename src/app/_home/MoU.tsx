@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useState, useEffect } from "react";
 import {
   Quote,
@@ -10,115 +10,12 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import { moUPartners } from "@/utils/MoUPartnersList";
+import { testimonials } from "@/utils/TestimonialList";
 
 export default function MoU() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  const mouPartners = [
-    {
-      name: "Delhi Public School",
-      logo: "🏫",
-      type: "Private School",
-      students: "2,500+",
-      programs: "Robotics Club, AI Workshop",
-      location: "New Delhi",
-      year: "2024",
-    },
-    {
-      name: "Kendriya Vidyalaya",
-      logo: "🏛️",
-      type: "Government School",
-      students: "1,800+",
-      programs: "STEM Labs, IoT Training",
-      location: "Mumbai",
-      year: "2023",
-    },
-    {
-      name: "DAV Public School",
-      logo: "🎓",
-      type: "Private School",
-      students: "3,200+",
-      programs: "Automation Workshop, Coding",
-      location: "Pune",
-      year: "2024",
-    },
-    {
-      name: "Army Public School",
-      logo: "⭐",
-      type: "Military School",
-      students: "1,500+",
-      programs: "Robotics Competition, AI Ethics",
-      location: "Bangalore",
-      year: "2023",
-    },
-    {
-      name: "Ryan International",
-      logo: "🌟",
-      type: "International School",
-      students: "4,000+",
-      programs: "Tech Innovation, Future Skills",
-      location: "Gurugram",
-      year: "2024",
-    },
-    {
-      name: "Modern School",
-      logo: "🔬",
-      type: "Private School",
-      students: "2,800+",
-      programs: "Science Club, Robotics Lab",
-      location: "Kolkata",
-      year: "2023",
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: "Dr. Priya Sharma",
-      role: "Principal",
-      school: "Delhi Public School",
-      image: "👩‍🏫",
-      rating: 5,
-      text: "Utthan Robotics has revolutionized how our students approach technology. The hands-on workshops and expert guidance have significantly improved our students' problem-solving abilities and technical skills.",
-      highlight: "Revolutionary approach to tech education",
-    },
-    {
-      name: "Rajesh Kumar",
-      role: "Science Teacher",
-      school: "Kendriya Vidyalaya",
-      image: "👨‍🔬",
-      rating: 5,
-      text: "The partnership with Utthan Robotics has been exceptional. Our students are now more confident in robotics and AI concepts. The curriculum is well-structured and age-appropriate.",
-      highlight: "Well-structured curriculum",
-    },
-    {
-      name: "Sarah Johnson",
-      role: "STEM Coordinator",
-      school: "Ryan International",
-      image: "👩‍💼",
-      rating: 5,
-      text: "Outstanding support and innovative teaching methods. The MoU has opened new possibilities for our students. We've seen remarkable improvement in their technical creativity and innovation.",
-      highlight: "Innovative teaching methods",
-    },
-    {
-      name: "Col. Vikram Singh",
-      role: "Administrator",
-      school: "Army Public School",
-      image: "👨‍✈️",
-      rating: 5,
-      text: "Discipline meets innovation with Utthan Robotics. Their systematic approach to robotics education aligns perfectly with our values. Students are excelling in national competitions.",
-      highlight: "Systematic approach to education",
-    },
-    {
-      name: "Ms. Anita Patel",
-      role: "Academic Director",
-      school: "DAV Public School",
-      image: "👩‍🎓",
-      rating: 5,
-      text: "The quality of training and resources provided by Utthan Robotics is exceptional. Our partnership has enhanced our school's reputation in STEM education significantly.",
-      highlight: "Enhanced STEM reputation",
-    },
-  ];
 
   useEffect(() => {
     let interval: string | number | NodeJS.Timeout | undefined;
@@ -141,12 +38,12 @@ export default function MoU() {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Our <span className="text-blue-600">Educational Partners</span>
+          <h2 className="text-5xl font-bold text-gray-900 mb-5">
+            Our <span className="text-[#2187ab]">Educational Partners</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Proudly partnered with leading educational institutions through
@@ -160,7 +57,7 @@ export default function MoU() {
             <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
               <Building className="w-6 h-6 text-blue-600" />
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-2">25+</div>
+            <div className="text-3xl font-bold text-gray-900 mb-2">20+</div>
             <p className="text-gray-600">Partner Schools</p>
           </div>
           <div className="bg-white rounded-xl p-6 shadow-lg text-center">
@@ -187,55 +84,74 @@ export default function MoU() {
         </div>
 
         {/* MoU Partners Grid */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            Memorandums of Understanding
+        <div className="my-32  border-t border-gray-200 pt-8">
+          <h3 className="text-4xl font-bold text-gray-900  text-center mb-20">
+            Our Partner Schools and Institutions
+            <br />
+            <span className="text-[#2187ab]">Memorandums of Understanding</span>
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mouPartners.map((partner, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
-              >
-                <div className="flex items-center mb-4">
-                  <div className="text-3xl mr-4">{partner.logo}</div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 text-lg">
-                      {partner.name}
-                    </h4>
-                    <p className="text-sm text-gray-500">{partner.type}</p>
-                  </div>
-                </div>
 
-                <div className="space-y-2 mb-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Students:</span>
-                    <span className="font-medium text-gray-900">
-                      {partner.students}
-                    </span>
+          <div className="relative mb-8">
+            {/* Container with fixed height and scroll */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[600px] overflow-y-auto pr-4 custom-scrollbar">
+              {moUPartners.map((partner, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 flex flex-col h-[280px]"
+                >
+                  {/* Header with logo and name */}
+                  <div className="flex items-start mb-4">
+                    <div className="text-4xl mr-4 text-blue-600 p-2 bg-blue-50 rounded-lg">
+                      {partner.image}
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-gray-900 text-lg line-clamp-1">
+                        {partner.name}
+                      </h4>
+                      <p className="text-sm text-gray-500 mt-1">
+                        <span className="px-2 py-1 bg-gray-100 rounded-full">
+                          {partner.type}
+                        </span>
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Location:</span>
-                    <span className="font-medium text-gray-900">
-                      {partner.location}
-                    </span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">MoU Year:</span>
-                    <span className="font-medium text-gray-900">
-                      {partner.year}
-                    </span>
-                  </div>
-                </div>
 
-                <div className="pt-4 border-t border-gray-100">
-                  <p className="text-sm text-gray-600 mb-2">Programs:</p>
-                  <p className="text-sm font-medium text-blue-600">
-                    {partner.programs}
-                  </p>
+                  {/* Stats in compact grid */}
+                  <div className="grid grid-cols-2 gap-3 mb-4 flex-1">
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <p className="text-xs text-gray-500 mb-1">Students</p>
+                      <p className="font-bold text-gray-900 text-lg">
+                        {partner.students}
+                      </p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <p className="text-xs text-gray-500 mb-1">Location</p>
+                      <p className="font-medium text-gray-900 line-clamp-1">
+                        {partner.location}
+                      </p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <p className="text-xs text-gray-500 mb-1">MoU Year</p>
+                      <p className="font-bold text-blue-600">{partner.date}</p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <p className="text-xs text-gray-500 mb-1">Status</p>
+                      <p className="font-medium text-green-600">Active</p>
+                    </div>
+                  </div>
+
+                  {/* Programs section */}
+                  {/* <div className="pt-3 border-t border-gray-100">
+                    <p className="text-xs font-semibold text-gray-500 mb-2">
+                      PROGRAMS
+                    </p>
+                    <p className="text-sm font-medium text-gray-800 line-clamp-2">
+                      {partner.programs}
+                    </p>
+                  </div> */}
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 

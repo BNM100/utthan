@@ -20,6 +20,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
+import CountUp from "react-countup";
 
 const CrouselImageList = [
   "/assets/images/crousel/1.jpg",
@@ -42,14 +43,14 @@ export default function AboutUs() {
     students: 0,
     sessions: 0,
     projects: 0,
-    awards: 0,
+    // awards: 0,
   });
 
   const finalValues = {
-    students: 1250,
+    students: 2600,
     sessions: 180,
     projects: 75,
-    awards: 15,
+    // awards: 15,
   };
 
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function AboutUs() {
       students: finalValues.students / steps,
       sessions: finalValues.sessions / steps,
       projects: finalValues.projects / steps,
-      awards: finalValues.awards / steps,
+      // awards: finalValues.awards / steps,
     };
 
     const timer = setInterval(() => {
@@ -118,14 +119,14 @@ export default function AboutUs() {
       color: "text-purple-600",
       bgColor: "bg-purple-50",
     },
-    {
-      icon: Award,
-      label: "Awards Won",
-      value: Math.floor(counters.awards),
-      suffix: "+",
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
-    },
+    // {
+    //   icon: Award,
+    //   label: "Awards Won",
+    //   value: Math.floor(counters.awards),
+    //   suffix: "+",
+    //   color: "text-orange-600",
+    //   bgColor: "bg-orange-50",
+    // },
   ];
 
   const features = [
@@ -154,18 +155,19 @@ export default function AboutUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            About <span className="text-blue-600">Utthan Robotics</span>
+          <h2 className="text-6xl font-bold text-gray-900 mb-6">
+            About <span className="text-[#2187ab]">Utthan Robotics</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We are passionate educators and innovators dedicated to bridging the
-            gap between theoretical knowledge and practical application in
-            robotics, AI, and automation.
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed text-justify">
+            At Utthan Robotics, we are dedicated to transforming education
+            through innovative technology solutions. Our mission is to empower
+            students and educators with the skills and knowledge needed to
+            thrive in the digital age.
           </p>
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="flex flex-wrap justify-evenly gap-8 mb-16">
           {stats.map((stat, index) => (
             <div
               key={index}
@@ -185,11 +187,10 @@ export default function AboutUs() {
           ))}
         </div>
         {/* Crousel */}
-        <div className="mb-16">
+        <div className="my-32">
           <Carousel
             opts={{
               align: "center",
-              // loop: true,
             }}
             plugins={[
               Autoplay({
@@ -197,23 +198,20 @@ export default function AboutUs() {
                 stopOnInteraction: true,
               }),
             ]}
-            className="w-full max-w-sm mx-auto md:max-w-none md:mx-0 lg:max-w-6xl"
+            className="w-full max-w-6xl mx-auto"
           >
             <CarouselContent>
-              {CrouselImageList.map((_, index) => (
+              {CrouselImageList.map((src, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <Image
-                          src={CrouselImageList[index]}
-                          alt={`Crousel Image ${index + 1}`}
-                          className="w-full h-full object-cover rounded-lg"
-                          width={500}
-                          height={500}
-                        />
-                      </CardContent>
-                    </Card>
+                  <div className="flex justify-center items-center p-2">
+                    <Image
+                      src={src}
+                      alt={`Carousel Image ${index + 1}`}
+                      className="rounded-lg object-cover w-full h-[350px] max-w-[400px]"
+                      width={400}
+                      height={350}
+                      priority={index === 0} // Optional: preload first image
+                    />
                   </div>
                 </CarouselItem>
               ))}
@@ -224,84 +222,123 @@ export default function AboutUs() {
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-          {/* Left Content */}
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Transforming Education Through Technology
-            </h3>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              Founded with a vision to democratize access to advanced technology
-              education, Utthan Robotics has become a leading platform for
-              students, professionals, and enthusiasts to explore the exciting
-              world of robotics and artificial intelligence.
-            </p>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              Our comprehensive curriculum combines theoretical foundations with
-              hands-on experience, ensuring our students are well-prepared for
-              the challenges of tomorrow's tech landscape.
-            </p>
+        {/* Main Content - Modern Layout */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center my-32">
+          {/* Left Content - Interactive Card */}
+          <div className="relative group">
+            {/* Floating card effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
 
-            {/* Features */}
-            <div className="space-y-4">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <feature.icon className="w-5 h-5 text-blue-600" />
+            <div className="relative bg-white rounded-2xl p-8 shadow-xl h-full">
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                Pioneering the Future of{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
+                  Robotics Education
+                </span>
+              </h3>
+
+              <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                At{" "}
+                <span className="font-semibold text-blue-600">
+                  Utthan Robotics
+                </span>
+                , we're not just teaching technology - we're shaping the
+                innovators of tomorrow. Our immersive learning ecosystem bridges
+                the gap between theoretical knowledge and real-world robotics
+                applications.
+              </p>
+
+              {/* Interactive Features */}
+              <div className="space-y-5">
+                {features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start space-x-4 p-3 hover:bg-blue-50 rounded-lg transition-all duration-300 cursor-pointer"
+                  >
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center shadow-sm">
+                        <feature.icon className="w-6 h-6 text-blue-600" />
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 text-lg mb-1">
+                        {feature.title}
+                      </h4>
+                      <p className="text-gray-600">{feature.description}</p>
                     </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">
-                      {feature.title}
-                    </h4>
-                    <p className="text-gray-600 text-sm">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Right Content - Visual Element */}
+          {/* Right Content - Animated Visuals */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 relative overflow-hidden">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-4 left-4 w-20 h-20 bg-blue-300 rounded-full"></div>
-                <div className="absolute top-16 right-8 w-12 h-12 bg-indigo-300 rounded-full"></div>
-                <div className="absolute bottom-8 left-8 w-16 h-16 bg-purple-300 rounded-full"></div>
-                <div className="absolute bottom-4 right-4 w-8 h-8 bg-cyan-300 rounded-full"></div>
-              </div>
-
-              {/* Content */}
-              <div className="relative z-10">
-                <h4 className="text-2xl font-bold text-gray-900 mb-4">
-                  Our Impact
+            {/* Floating elements container */}
+            <div className="relative h-full min-h-[400px]">
+              {/* Main card */}
+              <div className="absolute top-0 left-0 right-0 bg-[#2187ab] rounded-2xl p-8 shadow-2xl transform rotate-1 hover:rotate-0 transition duration-500">
+                <h4 className="text-2xl font-bold text-white mb-4">
+                  Transforming Learning Experiences
                 </h4>
-                <p className="text-gray-600 mb-6">
-                  From beginners to advanced practitioners, we've helped
-                  thousands of learners discover their potential in robotics and
-                  AI.
+                <p className="text-blue-100 mb-6 text-lg">
+                  Join 35,00+ learners who've accelerated their careers with
+                  our cutting-edge programs in robotics, AI, and automation.
                 </p>
 
-                {/* Mini Stats */}
+                {/* Animated Stats */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-blue-600 mb-1">
-                      95%
+                  <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center hover:scale-105 transition duration-300">
+                    <div className="text-3xl font-bold text-white mb-1">
+                      <CountUp end={95} duration={2} />%
                     </div>
-                    <div className="text-sm text-gray-600">Success Rate</div>
+                    <div className="text-blue-100 font-medium">
+                      Career Advancement
+                    </div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-green-600 mb-1">
-                      24/7
+                  <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center hover:scale-105 transition duration-300">
+                    <div className="text-3xl font-bold text-white mb-1">
+                      <CountUp end={24} duration={2} />
+                      /7
                     </div>
-                    <div className="text-sm text-gray-600">Support</div>
+                    <div className="text-blue-100 font-medium">
+                      Expert Support
+                    </div>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center hover:scale-105 transition duration-300">
+                    <div className="text-3xl font-bold text-white mb-1">
+                      <CountUp end={50} duration={2} />+
+                    </div>
+                    <div className="text-blue-100 font-medium">
+                      Hands-on Projects
+                    </div>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center hover:scale-105 transition duration-300">
+                    <div className="text-3xl font-bold text-white mb-1">
+                      <CountUp end={100} duration={2} />%
+                    </div>
+                    <div className="text-blue-100 font-medium">
+                      Practical Focus
+                    </div>
                   </div>
                 </div>
               </div>
+
+              {/* Floating robot illustration */}
+              <div className="absolute -bottom-10 -right-10 w-40 h-40">
+                <Image
+                  src="/assets/robot-illustration.png"
+                  alt="Robot Illustration"
+                  className="w-full h-full object-contain"
+                  width={160}
+                  height={160}
+                  priority
+                />
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute top-10 -left-10 w-24 h-24 bg-yellow-400 rounded-full mix-blend-multiply opacity-20"></div>
+              <div className="absolute bottom-20 -right-5 w-16 h-16 bg-purple-400 rounded-full mix-blend-multiply opacity-20"></div>
             </div>
           </div>
         </div>

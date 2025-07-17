@@ -9,13 +9,13 @@ import MainEvent from "./_home/MainEvent";
 
 export default function Home() {
   return (
-    <main className="  min-h-screen">
+    <main className="min-h-screen">
       {/* Hero Section */}
       <HeroSection />
       <MainEvent />
       <AboutUs />
       <MoU />
-      <Awards />
+      {/* <Awards /> */}
     </main>
   );
 }

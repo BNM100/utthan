@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useState, useEffect } from "react";
 import {
   Calendar,
@@ -13,6 +13,19 @@ import {
   Trophy,
   Star,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
+import { schoolEvents } from "@/utils/SchoolEventsList";
+import { YSRPImageList } from "@/utils/YSRPImageList";
 
 export default function MainEvent() {
   const [activeSchool, setActiveSchool] = useState(0);
@@ -22,7 +35,7 @@ export default function MainEvent() {
     {
       icon: Users,
       label: "Total Participants",
-      value: "2,500+",
+      value: "3,500+",
       color: "text-blue-600",
       bg: "bg-blue-50",
     },
@@ -49,51 +62,12 @@ export default function MainEvent() {
     },
   ];
 
-  const schoolEvents = [
-    {
-      school: "Delhi Public School",
-      location: "New Delhi",
-      date: "March 15-17, 2024",
-      participants: 150,
-      image: "🏫",
-      projects: 25,
-      status: "Completed",
-    },
-    {
-      school: "Ryan International",
-      location: "Mumbai",
-      date: "April 8-10, 2024",
-      participants: 200,
-      image: "🌟",
-      projects: 32,
-      status: "Completed",
-    },
-    {
-      school: "DAV Public School",
-      location: "Bangalore",
-      date: "May 12-14, 2024",
-      participants: 180,
-      image: "🎓",
-      projects: 28,
-      status: "Completed",
-    },
-    {
-      school: "Kendriya Vidyalaya",
-      location: "Pune",
-      date: "June 20-22, 2024",
-      participants: 160,
-      image: "🏛️",
-      projects: 24,
-      status: "Upcoming",
-    },
-  ];
-
   const programHighlights = [
     {
       icon: BookOpen,
       title: "Comprehensive Curriculum",
       description:
-        "3-day intensive program covering robotics fundamentals, AI concepts, and hands-on projects",
+        "Hands-on learning with a structured curriculum covering robotics fundamentals, programming, and engineering principles",
     },
     {
       icon: Users,
@@ -112,6 +86,18 @@ export default function MainEvent() {
       title: "Future Skills",
       description:
         "Develops critical thinking, problem-solving, and technological literacy for tomorrow's leaders",
+    },
+    {
+      icon: Calendar,
+      title: "Flexible Scheduling",
+      description:
+        "Programs can be tailored to fit school calendars, ensuring maximum participation and engagement",
+    },
+    {
+      icon: Star,
+      title: "Recognition and Awards",
+      description:
+        "Students receive certificates and awards for outstanding projects, fostering a sense of achievement",
     },
   ];
 
@@ -140,36 +126,68 @@ export default function MainEvent() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-blue-600 text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-[#2187ab] text-sm font-medium mb-6">
             <Zap className="w-4 h-4 mr-2" />
             Flagship Program
           </div>
 
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
             Young Robotics{" "}
-            <span className="text-blue-600">Scientist Program</span>
+            <span className="text-[#2187ab]">Scientist Program</span>
           </h1>
 
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
             Empowering the next generation of innovators through hands-on
-            robotics education. A transformative 3-day program that ignites
-            curiosity and builds future-ready skills.
+            robotics education. A transformative program that ignites curiosity
+            and builds future-ready skills.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-lg">
+            <Button className="inline-flex items-center px-8 py-8 bg-[#2187ab] hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-lg">
               <Play className="w-5 h-5 mr-2" />
               Watch Program Highlights
-            </button>
-            <button className="inline-flex items-center px-8 py-4 border border-gray-300 hover:border-gray-400 text-gray-700 font-semibold rounded-lg transition-colors">
-              Download Brochure
-              <ChevronRight className="w-5 h-5 ml-2" />
-            </button>
+            </Button>
           </div>
         </div>
 
+        {/* Crousel */}
+        <div className="mb-16">
+          <Carousel
+            opts={{
+              align: "center",
+              // loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 4000,
+                stopOnInteraction: true,
+              }),
+            ]}
+            className="w-full max-w-sm mx-auto md:max-w-none md:mx-0 lg:max-w-6xl"
+          >
+            <CarouselContent>
+              {YSRPImageList.map((s, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="flex justify-center items-center p-2">
+                    <Image
+                      src={s.src}
+                      alt={s.alt}
+                      className="rounded-lg object-fill w-full h-[350px] max-w-[400px]"
+                      width={400}
+                      height={350}
+                      priority={index === 0} // Optional: preload first image
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+
         {/* Live Counter */}
-        <div className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 mb-16 text-white text-center">
+        <div className=" bg-[#2187ab] rounded-2xl p-8 mb-16 text-white text-center">
           <h3 className="text-2xl font-bold mb-4">Program Impact</h3>
           <div className="text-6xl font-bold mb-2">
             {Math.floor(registrations).toLocaleString()}+
@@ -226,13 +244,13 @@ export default function MainEvent() {
         {/* School Events Timeline */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Schools Program Schedule
+            Schools Hosting Events
           </h2>
 
           {/* School Navigation */}
           <div className="flex flex-wrap justify-center gap-2 mb-8">
             {schoolEvents.map((_, index) => (
-              <button
+              <Button
                 key={index}
                 onClick={() => setActiveSchool(index)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
@@ -242,7 +260,7 @@ export default function MainEvent() {
                 }`}
               >
                 Event {index + 1}
-              </button>
+              </Button>
             ))}
           </div>
 
@@ -277,7 +295,7 @@ export default function MainEvent() {
             </div>
 
             <div className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                     <Calendar className="w-5 h-5 text-blue-600" />
@@ -301,91 +319,13 @@ export default function MainEvent() {
                     </p>
                   </div>
                 </div>
-
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <Award className="w-5 h-5 text-purple-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Projects</p>
-                    <p className="font-semibold text-gray-900">
-                      {schoolEvents[activeSchool].projects} Completed
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Program Structure */}
-        <div className="bg-gray-50 rounded-2xl p-8 mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            3-Day Program Structure
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                day: "Day 1",
-                title: "Foundation & Theory",
-                topics: [
-                  "Robotics Introduction",
-                  "Basic Components",
-                  "Programming Basics",
-                  "Safety Protocols",
-                ],
-                color: "bg-blue-100 text-blue-700",
-              },
-              {
-                day: "Day 2",
-                title: "Hands-On Building",
-                topics: [
-                  "Robot Assembly",
-                  "Sensor Integration",
-                  "Programming Practice",
-                  "Testing & Debugging",
-                ],
-                color: "bg-green-100 text-green-700",
-              },
-              {
-                day: "Day 3",
-                title: "Project & Presentation",
-                topics: [
-                  "Final Project",
-                  "Innovation Challenge",
-                  "Peer Presentations",
-                  "Award Ceremony",
-                ],
-                color: "bg-purple-100 text-purple-700",
-              },
-            ].map((day, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-md">
-                <div
-                  className={`inline-block px-3 py-1 rounded-full text-sm font-medium mb-4 ${day.color}`}
-                >
-                  {day.day}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {day.title}
-                </h3>
-                <ul className="space-y-2">
-                  {day.topics.map((topic, topicIndex) => (
-                    <li
-                      key={topicIndex}
-                      className="flex items-center text-gray-600"
-                    >
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                      {topic}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Call to Action */}
-        <div className="text-center bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 text-white">
+        <div className="text-center bg-[#2187ab] rounded-2xl p-8 text-white">
           <h3 className="text-2xl font-bold mb-4">
             Ready to Host the Next Program?
           </h3>
@@ -393,7 +333,7 @@ export default function MainEvent() {
             Bring the Young Robotics Scientist Program to your school and
             inspire the next generation of innovators.
           </p>
-          <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+          <button className="bg-white text-[#2187ab] px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
             Schedule a Program
           </button>
         </div>
