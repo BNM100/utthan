@@ -18,11 +18,11 @@ import {
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: "nabin yadav",
-    email: "nabin.yadav@example.com",
-    phone: "9800961247",
-    subject: "Inquiry about services",
-    message: "I would like to know more about your services.",
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
     inquiryType: "general",
   });
 
