@@ -55,7 +55,7 @@ export default function Footer() {
                 <FaFacebook />
               </a>
               <a
-                href=""
+                href="https://www.linkedin.com/company/utthanroboticslab"
                 className="text-gray-400 hover:text-[#2187ab] transition-colors"
               >
                 <FaLinkedin />
@@ -73,8 +73,8 @@ export default function Footer() {
               {[
                 { name: "Home", href: "#" },
                 { name: "Workshops", href: "#" },
-                { name: "Student Projects", href: "#" },
-                { name: "Careers", href: "#" },
+                { name: "Contact", href: "/contact" },
+                // { name: "Careers", href: "#" },
               ].map((item) => (
                 <li key={item.name}>
                   <a
@@ -124,15 +124,14 @@ export default function Footer() {
                 <MdLocationOn className="text-[#2187ab] text-xl mr-3 mt-1" />
                 <div>
                   <p className="text-gray-400">Address</p>
-                  <p>Baneshwor, Kathmandu</p>
-                  <p>Nepal</p>
+                  <p>Dharan, Nepal</p>
                 </div>
               </li>
             </ul>
           </div>
 
           {/* Newsletter */}
-          <div>
+          {/* <div>
             <h3 className="text-xl font-bold text-white mb-6 flex items-center">
               <span className="w-3 h-3 bg-[#2187ab] rounded-full mr-2"></span>
               Stay Updated
@@ -156,7 +155,7 @@ export default function Footer() {
                 Subscribe Now
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { moUPartners } from "@/utils/MoUPartnersList";
 import { testimonials } from "@/utils/TestimonialList";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function MoU() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -93,7 +95,7 @@ export default function MoU() {
 
           <div className="relative mb-8">
             {/* Container with fixed height and scroll */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[600px] overflow-y-auto pr-4 custom-scrollbar">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[650px] overflow-y-auto pr-4 custom-scrollbar">
               {moUPartners.map((partner, index) => (
                 <div
                   key={index}
@@ -132,7 +134,7 @@ export default function MoU() {
                     </div>
                     <div className="bg-gray-50 p-3 rounded-lg">
                       <p className="text-xs text-gray-500 mb-1">MoU Year</p>
-                      <p className="font-bold text-blue-600">{partner.date}</p>
+                      <p className="font-bold text-[#2187ab]">{partner.date}</p>
                     </div>
                     <div className="bg-gray-50 p-3 rounded-lg">
                       <p className="text-xs text-gray-500 mb-1">Status</p>
@@ -180,7 +182,7 @@ export default function MoU() {
               </div>
 
               <blockquote className="text-lg text-gray-700 italic mb-6 max-w-3xl mx-auto leading-relaxed">
-                <Quote className="w-6 h-6 text-blue-600 inline mr-2" />
+                <Quote className="w-6 h-6 text-[#2187ab] inline mr-2" />
                 {testimonials[activeTestimonial].text}
               </blockquote>
 
@@ -188,7 +190,7 @@ export default function MoU() {
                 <p className="font-bold text-gray-900 text-lg">
                   {testimonials[activeTestimonial].name}
                 </p>
-                <p className="text-blue-600 font-medium">
+                <p className="text-[#2187ab] font-medium">
                   {testimonials[activeTestimonial].role}
                 </p>
                 <p className="text-gray-600 text-sm">
@@ -197,7 +199,7 @@ export default function MoU() {
               </div>
 
               <div className="inline-block bg-blue-50 rounded-full px-4 py-2">
-                <p className="text-sm text-blue-700 font-medium">
+                <p className="text-sm text-[#2187ab] font-medium">
                   "{testimonials[activeTestimonial].highlight}"
                 </p>
               </div>
@@ -221,7 +223,7 @@ export default function MoU() {
                     onClick={() => setActiveTestimonial(index)}
                     className={`w-3 h-3 rounded-full transition-colors ${
                       index === activeTestimonial
-                        ? "bg-blue-600"
+                        ? "bg-[#2187ab]"
                         : "bg-gray-300"
                     }`}
                     onMouseEnter={() => setIsAutoPlaying(false)}
@@ -244,7 +246,7 @@ export default function MoU() {
 
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <div className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-8 text-white">
+          <div className="bg-gradient-to-r from-[#2187ab] to-cyan-600 rounded-xl p-8 text-white">
             <h4 className="text-2xl font-bold mb-4">
               Ready to Partner with Us?
             </h4>
@@ -252,9 +254,14 @@ export default function MoU() {
               Join our network of educational partners and transform your
               students' learning experience.
             </p>
-            <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              Contact for MoU
-            </button>
+            <Link href="/contact">
+              <Button
+                variant={"default"}
+                className="bg-white text-blue-600 px-8 py-6 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Contact for MoU
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
