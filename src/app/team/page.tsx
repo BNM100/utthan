@@ -1,98 +1,154 @@
-"use client"
+"use client";
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Linkedin, Twitter, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const teamMembers = [
   {
     id: 1,
-    name: "Sarah Chen",
-    role: "Chief Executive Officer",
+    name: "Binam Shrestha",
+    role: "Founder,CEO",
     department: "Leadership",
-    image:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
-    bio: "Visionary leader with 12+ years in tech innovation and strategic growth.",
+    image: "/assets/team/binam_shrestha.png",
+    bio: "Visionary leader with a passion for robotics and education, driving innovation at Utthan Robotics Lab.",
     skills: ["Strategy", "Leadership", "Innovation"],
     social: {
       linkedin: "#",
-      twitter: "#",
-      email: "sarah@company.com",
+      facebook: "#",
+      email: "binam9800961247@gmail.com",
     },
   },
   {
     id: 2,
-    name: "Marcus Rodriguez",
-    role: "Chief Technology Officer",
-    department: "Engineering",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-    bio: "Full-stack architect passionate about scalable solutions and team mentorship.",
-    skills: ["Architecture", "DevOps", "Mentoring"],
+    name: "Shruti Shrestha",
+    role: "Finance Manager",
+    department: "Finance",
+    image: "/assets/team/shruti_shrestha.png",
+    bio: "Financial strategist ensuring sustainable growth and resource management at Utthan Robotics Lab.",
+    skills: ["Financial Analysis", "Budgeting", "Forecasting"],
     social: {
       linkedin: "#",
-      twitter: "#",
-      email: "marcus@company.com",
+      facebook: "https://www.facebook.com/shrutishrestha007",
+      email: "",
     },
   },
   {
     id: 3,
-    name: "Emily Watson",
-    role: "Head of Design",
-    department: "Design",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
-    bio: "Creative designer focused on user-centered experiences and design systems.",
-    skills: ["UX Design", "Design Systems", "Research"],
+    name: "Lokesh Kr. Mandal",
+    role: "IOT instructor",
+    department: "Engineering",
+    image: "/assets/team/lokesh_mandal.png",
+    bio: "Experienced IoT instructor with a passion for teaching and empowering the next generation of innovators.",
+    skills: ["IoT", "Embedded Systems", "Teaching"],
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "emily@company.com",
+      email: "#",
     },
   },
   {
     id: 4,
-    name: "David Kim",
-    role: "Senior Software Engineer",
-    department: "Engineering",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-    bio: "Backend specialist with expertise in distributed systems and performance optimization.",
-    skills: ["Backend", "Databases", "Performance"],
+    name: "Bikram Thapa",
+    role: "3D Modeler",
+    department: "Design",
+    image: "/assets/team/bikram_thapa.png",
+    bio: "3D modeling expert creating immersive and engaging visual experiences.",
+    skills: ["3D Modeling", "Animation", "Visual Effects"],
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "david@company.com",
-    },
-  },
-  {
-    id: 5,
-    name: "Lisa Thompson",
-    role: "Product Manager",
-    department: "Product",
-    image:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
-    bio: "Data-driven product strategist with a passion for user experience and market analysis.",
-    skills: ["Product Strategy", "Analytics", "User Research"],
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "lisa@company.com",
+      email: "#",
     },
   },
   {
     id: 6,
-    name: "James Park",
-    role: "DevOps Engineer",
+    name: "Jeewan Lamsal",
+    role: "AI Instructor",
     department: "Engineering",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
-    bio: "Infrastructure expert ensuring reliable, scalable, and secure deployment pipelines.",
-    skills: ["AWS", "Kubernetes", "Security"],
+    image: "/assets/team/jeewan_lamsal.png",
+    bio: "AI Instructor dedicated to fostering a deep understanding of artificial intelligence and its applications.",
+    skills: [
+      "Machine Learning",
+      "Deep Learning",
+      "Natural Language Processing",
+    ],
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "james@company.com",
+      email: "",
+    },
+  },
+  {
+    id: 7,
+    name: "MukeshWar Mandal",
+    role: "Robotics Intern",
+    department: "Engineering",
+    image: "/assets/team/mukeshwor_mandal.png",
+    bio: "Robotics intern with a keen interest in developing innovative robotic solutions.",
+    skills: ["Robotics", "Programming", "Problem Solving"],
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      email: "",
+    },
+  },
+  {
+    id: 8,
+    name: "Bipin Bista",
+    role: "AI/ML Intern",
+    department: "Engineering",
+    image: "/assets/team/bipin_bista.png",
+    bio: "AI/ML intern with a passion for developing intelligent solutions.",
+    skills: ["Machine Learning", "Data Analysis", "Python"],
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      email: "",
+    },
+  },
+  {
+    id: 9,
+    name: "Pratik Kr. Mishra",
+    role: "IOT Intern",
+    department: "Engineering",
+    image: "/assets/team/pratik_kr_mishra.png",
+    bio: "IOT intern with a focus on developing innovative IoT solutions.",
+    skills: ["IoT", "Embedded Systems", "Programming"],
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      email: "",
+    },
+  },
+  {
+    id: 10,
+    name: "Spandan Ghimire",
+    role: "3D Modeler",
+    department: "Design",
+    image: "/assets/team/spandan_ghimire.png",
+    bio: "3D modeler with a passion for creating stunning visual experiences.",
+    skills: ["3D Modeling", "Animation", "Visual Effects"],
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      email: "",
+    },
+  },
+  {
+    id: 11,
+    name: "Dipika Chaudhary",
+    role: "Robotics Intern",
+    department: "Engineering",
+    image: "/assets/team/dipika_chaudhary.png",
+    bio: "Robotics intern with a passion for developing innovative robotic solutions.",
+    skills: ["Robotics", "Programming", "Problem Solving"],
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      email: "",
     },
   },
 ];
@@ -131,7 +187,7 @@ export default function OurTeam() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {departments.map((dept) => (
-            <button
+            <Button
               key={dept}
               onClick={() => setSelectedDepartment(dept)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 ${
@@ -141,7 +197,7 @@ export default function OurTeam() {
               }`}
             >
               {dept}
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -161,10 +217,12 @@ export default function OurTeam() {
               <CardContent className="p-0">
                 {/* Image Container */}
                 <div className="relative overflow-hidden h-80">
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    layout="fill"
+                    objectFit="contain"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 

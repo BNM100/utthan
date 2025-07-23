@@ -1,76 +1,78 @@
 "use client";
 import React, { useState } from "react";
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
-  Clock, 
-  CheckCircle, 
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Clock,
+  CheckCircle,
   AlertCircle,
   Loader2,
   Globe,
   MessageSquare,
-  Users
-} from 'lucide-react';
+  Users,
+} from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-    inquiryType: 'general'
+    name: "nabin yadav",
+    email: "nabin.yadav@example.com",
+    phone: "9800961247",
+    subject: "Inquiry about services",
+    message: "I would like to know more about your services.",
+    inquiryType: "general",
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<string | null>(null); // 'success', 'error', or null
 
   const inquiryTypes = [
-    { value: 'general', label: 'General Inquiry', icon: MessageSquare },
-    { value: 'workshop', label: 'Workshop Registration', icon: Users },
-    { value: 'collaboration', label: 'Collaboration', icon: Globe },
+    { value: "general", label: "General Inquiry", icon: MessageSquare },
+    { value: "workshop", label: "Workshop Registration", icon: Users },
+    { value: "collaboration", label: "Collaboration", icon: Globe },
   ];
 
   const contactInfo = [
     {
       icon: Mail,
       title: "Email Us",
-      primary: "hello@utthanrobotics.com",
-      secondary: "support@utthanrobotics.com",
-      description: "Get in touch via email"
+      primary: "utthanroboticslab01@gmail.com",
+      secondary: "utthanroboticslab01@gmail.com",
+      description: "Get in touch via email",
     },
     {
       icon: Phone,
       title: "Call Us",
-      primary: "+977 98-XXXXXXX",
-      secondary: "+977 98-XXXXXXX",
-      description: "Mon-Fri 9AM-6PM NPT"
+      primary: "+977 980-0961247",
+      secondary: "+977 980-0961247",
+      description: "Sun-Fri 9AM-6PM NPT",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      primary: "Janakpur, Madhesh",
+      primary: "Dharan, Nepal",
       secondary: "Nepal",
-      description: "Our main office location"
+      description: "Our main office location",
     },
     {
       icon: Clock,
       title: "Office Hours",
-      primary: "Mon - Fri: 9AM - 6PM",
+      primary: "Sun - Fri: 9AM - 6PM",
       secondary: "Sat: 10AM - 4PM",
-      description: "Nepal Standard Time"
-    }
+      description: "Nepal Standard Time",
+    },
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -81,30 +83,30 @@ export default function ContactPage() {
 
     try {
       // Replace with your actual API endpoint
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        setSubmitStatus('success');
+        setSubmitStatus("success");
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: '',
-          inquiryType: 'general'
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+          inquiryType: "general",
         });
       } else {
-        throw new Error('Failed to send message');
+        throw new Error("Failed to send message");
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -121,11 +123,15 @@ export default function ContactPage() {
               Get In Touch
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
-              Contact <span className="bg-gradient-to-r from-[#2187ab] to-[#1a6d8a] bg-clip-text text-transparent">Us</span>
+              Contact{" "}
+              <span className="bg-gradient-to-r from-[#2187ab] to-[#1a6d8a] bg-clip-text text-transparent">
+                Us
+              </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to start your robotics journey? We'd love to hear from you. 
-              Reach out for workshops, collaborations, or any questions you might have.
+              Ready to start your robotics journey? We'd love to hear from you.
+              Reach out for workshops, collaborations, or any questions you
+              might have.
             </p>
           </div>
         </div>
@@ -133,17 +139,18 @@ export default function ContactPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          
           {/* Contact Information */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Let's Connect</h2>
-              
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                Let's Connect
+              </h2>
+
               <div className="space-y-6">
                 {contactInfo.map((info, index) => {
                   const IconComponent = info.icon;
                   return (
-                    <Card 
+                    <Card
                       key={index}
                       className="group hover:shadow-lg transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm hover:-translate-y-1"
                     >
@@ -180,11 +187,11 @@ export default function ContactPage() {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-blue-100">Email Response</span>
-                      <span className="font-semibold"> 2 hours</span>
+                      <span className="font-semibold"> &lt; 2 hours</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-blue-100">Phone Response</span>
-                      <span className="font-semibold"> 30 mins</span>
+                      <span className="font-semibold"> &lt; 30 mins</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-blue-100">Meeting Setup</span>
@@ -201,22 +208,31 @@ export default function ContactPage() {
             <Card className="border-0 shadow-xl bg-white/70 backdrop-blur-sm">
               <CardContent className="p-8">
                 <div className="mb-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-2">Send us a Message</h2>
-                  <p className="text-gray-600">Fill out the form below and we'll get back to you soon.</p>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                    Send us a Message
+                  </h2>
+                  <p className="text-gray-600">
+                    Fill out the form below and we'll get back to you soon.
+                  </p>
                 </div>
 
                 {/* Status Messages */}
-                {submitStatus === 'success' && (
+                {submitStatus === "success" && (
                   <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-600" />
-                    <p className="text-green-800 font-medium">Message sent successfully! We'll get back to you soon.</p>
+                    <p className="text-green-800 font-medium">
+                      Message sent successfully! We'll get back to you soon.
+                    </p>
                   </div>
                 )}
 
-                {submitStatus === 'error' && (
+                {submitStatus === "error" && (
                   <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center space-x-3">
                     <AlertCircle className="w-5 h-5 text-red-600" />
-                    <p className="text-red-800 font-medium">Failed to send message. Please try again or contact us directly.</p>
+                    <p className="text-red-800 font-medium">
+                      Failed to send message. Please try again or contact us
+                      directly.
+                    </p>
                   </div>
                 )}
 
@@ -233,15 +249,22 @@ export default function ContactPage() {
                           <button
                             key={type.value}
                             type="button"
-                            onClick={() => setFormData(prev => ({ ...prev, inquiryType: type.value }))}
+                            onClick={() =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                inquiryType: type.value,
+                              }))
+                            }
                             className={`p-4 rounded-xl border-2 transition-all duration-300 flex flex-col items-center space-y-2 hover:scale-105 ${
                               formData.inquiryType === type.value
-                                ? 'border-[#2187ab] bg-[#2187ab]/5 text-[#2187ab]'
-                                : 'border-gray-200 hover:border-[#2187ab]/30 text-gray-600'
+                                ? "border-[#2187ab] bg-[#2187ab]/5 text-[#2187ab]"
+                                : "border-gray-200 hover:border-[#2187ab]/30 text-gray-600"
                             }`}
                           >
                             <IconComponent className="w-6 h-6" />
-                            <span className="text-sm font-medium text-center">{type.label}</span>
+                            <span className="text-sm font-medium text-center">
+                              {type.label}
+                            </span>
                           </button>
                         );
                       })}
@@ -251,7 +274,10 @@ export default function ContactPage() {
                   {/* Name and Email Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-semibold text-gray-700 mb-2"
+                      >
                         Full Name *
                       </label>
                       <input
@@ -266,7 +292,10 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-semibold text-gray-700 mb-2"
+                      >
                         Email Address *
                       </label>
                       <input
@@ -285,7 +314,10 @@ export default function ContactPage() {
                   {/* Phone and Subject Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-semibold text-gray-700 mb-2"
+                      >
                         Phone Number
                       </label>
                       <input
@@ -299,7 +331,10 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label
+                        htmlFor="subject"
+                        className="block text-sm font-semibold text-gray-700 mb-2"
+                      >
                         Subject *
                       </label>
                       <input
@@ -317,7 +352,10 @@ export default function ContactPage() {
 
                   {/* Message */}
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
                       Message *
                     </label>
                     <textarea

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Menu, X, Rocket, ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,32 +11,42 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "/", submenu:[] },
+    { name: "Home", href: "/", submenu: [] },
     { name: "Workshops", href: "/workshops", submenu: [] },
     { name: "Our Team", href: "/team", submenu: [] },
     { name: "Contact", href: "/contact", submenu: [] },
   ];
 
   return (
-    <nav className={` w-full top-0 z-50 transition-all duration-500 ${
-      scrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' 
-        : 'bg-white/90 backdrop-blur-sm'
-    }`}>
+    <nav
+      className={` w-full top-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100"
+          : "bg-white/90 backdrop-blur-sm"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
           {/* Logo Section */}
           <a href="/" className="flex items-center group">
             <div className="relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#2187ab] to-[#1a6d8a] rounded-xl opacity-0 group-hover:opacity-10 transition-all duration-300 blur-sm"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#2187ab] to-[#1a6d8a] rounded-xl opacity-0 group-hover:opacity-10 transition-all duration-300"></div>
               <div className="relative flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#2187ab] to-[#1a6d8a] rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <span className="text-white font-bold text-xl">U</span>
+                <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <span className="text-white font-bold text-xl">
+                    <Image
+                      src="/assets/images/utthan-logo-arm-transparent.png"
+                      alt="Utthan Robotics Logo"
+                      width={60}
+                      height={60}
+                      className="w-15 h-15 object-contain group-hover:rotate-12 transition-transform duration-300"
+                    />
+                  </span>
                 </div>
                 <div className="ml-4">
                   <span className="text-2xl font-bold bg-gradient-to-r from-[#2187ab] to-[#1a6d8a] bg-clip-text text-transparent">
@@ -59,7 +70,7 @@ export default function Navbar() {
                 >
                   <span className="relative z-10">{link.name}</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#2187ab]/5 to-[#1a6d8a]/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 scale-95 group-hover:scale-100"></div>
-                  
+
                   {/* Active indicator */}
                   <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-[#2187ab] to-[#1a6d8a] transition-all duration-300 group-hover:w-8 transform -translate-x-1/2"></div>
                 </a>
@@ -79,13 +90,16 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            
+
             {/* CTA Button */}
             <a
-              href="/register"
+              href="/contact"
               className="ml-6 px-8 py-3 bg-gradient-to-r from-[#2187ab] to-[#1a6d8a] text-white font-semibold text-lg rounded-full hover:shadow-lg hover:shadow-[#2187ab]/25 transition-all duration-300 hover:scale-105 flex items-center group"
             >
-              <Rocket size={20} className="mr-2 group-hover:rotate-12 transition-transform duration-300" />
+              <Rocket
+                size={20}
+                className="mr-2 group-hover:rotate-12 transition-transform duration-300"
+              />
               Register Now
             </a>
           </div>
@@ -97,7 +111,11 @@ export default function Navbar() {
             aria-label="Toggle Menu"
           >
             <div className="relative w-6 h-6">
-              <span className={`absolute inset-0 transition-all duration-300 ${isOpen ? 'rotate-45 opacity-100' : 'opacity-100'}`}>
+              <span
+                className={`absolute inset-0 transition-all duration-300 ${
+                  isOpen ? "rotate-45 opacity-100" : "opacity-100"
+                }`}
+              >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </span>
             </div>
@@ -105,9 +123,11 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden overflow-hidden transition-all duration-500 ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}>
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-500 ${
+            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
           <div className="pb-6 pt-4 space-y-2">
             {navLinks.map((link, index) => (
               <div key={link.name} className="relative">
@@ -119,7 +139,7 @@ export default function Navbar() {
                 >
                   {link.name}
                 </a>
-                
+
                 {link.submenu && (
                   <div className="ml-6 mt-2 space-y-1">
                     {link.submenu.map((item) => (
@@ -136,7 +156,7 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            
+
             {/* Mobile CTA */}
             <div className="pt-4 px-6">
               <a

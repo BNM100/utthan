@@ -11,6 +11,9 @@ export default function HeroSection() {
     { text: "Robotics Innovation", color: "text-blue-300" },
     { text: "IoT Integration", color: "text-cyan-300" },
     { text: "Automation Excellence", color: "text-blue-200" },
+    { text: "AI Empowerment", color: "text-blue-400" },
+    { text: "Future-Ready Skills", color: "text-blue-500" },
+    { text: "Hands-On Learning", color: "text-blue-600" },
   ];
 
   useEffect(() => {
@@ -26,6 +29,7 @@ export default function HeroSection() {
     { icon: Code, label: "IoT", delay: 0.3 },
     { icon: Zap, label: "Automation", delay: 0.4 },
     { icon: Cpu, label: "AI", delay: 0.5 },
+    
   ];
 
   return (
@@ -136,7 +140,7 @@ export default function HeroSection() {
               {features.map(({ icon: Icon, label, delay }) => (
                 <div
                   key={label}
-                  className={`flex items-center space-x-2 p-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-300/30 transition-all duration-300 hover:scale-[1.02] ${
+                  className={`flex items-center space-x-2 p-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-300/30 transition-all duration-300 hover:scale-[1.02] w-full ${
                     isLoaded ? "animate-fade-in" : "opacity-0"
                   }`}
                   style={{ animationDelay: `${delay}s` }}
@@ -144,7 +148,7 @@ export default function HeroSection() {
                   <div className="p-2 rounded-lg bg-gradient-to-br from-blue-400/20 to-cyan-400/20">
                     <Icon className="w-5 h-5 text-blue-300" />
                   </div>
-                  <span className="text-sm font-medium">{label}</span>
+                  <span className="text-sm font-medium p-1">{label}</span>
                 </div>
               ))}
             </div>

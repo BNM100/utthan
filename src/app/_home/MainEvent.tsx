@@ -26,6 +26,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { schoolEvents } from "@/utils/SchoolEventsList";
 import { YSRPImageList } from "@/utils/YSRPImageList";
+import Link from "next/link";
 
 export default function MainEvent() {
   const [activeSchool, setActiveSchool] = useState(0);
@@ -333,9 +334,11 @@ export default function MainEvent() {
             Bring the Young Robotics Scientist Program to your school and
             inspire the next generation of innovators.
           </p>
-          <button className="bg-white text-[#2187ab] px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-            Schedule a Program
-          </button>
+          <Link href="/contact">
+            <Button className="bg-white text-[#2187ab] px-8 py-8 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+              Schedule a Program
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
